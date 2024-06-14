@@ -1,0 +1,5 @@
+video: boston.mp4
+output:
+  file: output.mp4
+  show: False
+  realtime: False

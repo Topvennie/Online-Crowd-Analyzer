@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "online-crowd-analyzer"
+version = "0.1.0"
+description = ""
+authors = ["Topvennie <vincent@vallaeys.com>"]
+license = "MIT License"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pyyaml = "^6.0.1"
+pydantic = "^2.7.4"
+opencv-python = "^4.10.0.82"
+imutils = "^0.5.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
