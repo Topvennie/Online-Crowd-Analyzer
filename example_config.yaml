@@ -1,0 +1,55 @@
+add:
+  - name: "Entrance 1"
+    input:
+      file: data/entrance_1.mp4
+      counting_line: 500
+    output:
+      file: null
+      show: True
+    detector:
+      model: yolo
+      arguments:
+        confidence: 0.6
+        model: yolov8n.pt
+    tracker:
+      model: centroid
+      arguments:
+        maxDisappeared: 40
+        maxDistance: 50
+remove:
+  - name: "Exit 1"
+    input:
+      file: data/exit_1.mpv
+      counting_line: 500
+    output:
+      file: null
+      show: True
+    detector:
+      model: yolo
+      arguments:
+        confidence: 0.6
+        model: yolov8n.pt
+    tracker:
+      model: centroid
+      arguments:
+        maxDisappeared: 40
+        maxDistance: 50
+  - name: "Exit 2"
+    input:
+      file: rtsps://0.0.0.0:1234/video
+      counting_line: 500
+    output:
+      file: null
+      show: True
+    detector:
+      model: yolo
+      arguments:
+        confidence: 0.6
+        model: yolov8n.pt
+    tracker:
+      model: centroid
+      arguments:
+        maxDisappeared: 40
+        maxDistance: 50
+show:
+  wait: 1

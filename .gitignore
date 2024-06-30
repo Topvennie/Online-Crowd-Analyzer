@@ -1,3 +1,12 @@
 .venv/
 
 __pycache__/
+
+# Data files
+data/
+
+# Yolo files
+*.pt
+
+# Config
+config.yaml
