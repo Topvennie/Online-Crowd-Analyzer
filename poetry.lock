@@ -211,16 +211,6 @@ docs = ["ipython", "matplotlib", "numpydoc", "sphinx"]
 tests = ["pytest", "pytest-cov", "pytest-xdist"]
 
 [[package]]
-name = "dlib"
-version = "19.24.4"
-description = "A toolkit for making real world machine learning and data analysis applications"
-optional = false
-python-versions = "*"
-files = [
-    {file = "dlib-19.24.4.tar.gz", hash = "sha256:f83dfdf6e85b91fc2b54ea5aad7932a5617cd61e9d13fc72055e22c7d9e264ff"},
-]
-
-[[package]]
 name = "filelock"
 version = "3.15.4"
 description = "A platform independent file lock."
@@ -1751,4 +1741,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "3129bec0707008f4a1ba9247607f8dd873b12798425f4a7a2b0262eb56af0c7d"
+content-hash = "f18c93093728dc57ab4660dbf2ac363d5d22040461a7e74db941163e6a8a88ff"
