@@ -6,7 +6,8 @@ __pycache__/
 data/
 
 # Yolo files
-*.pt
+counter/detectors/yolo/*
+!counter/detectors/yolo/yolo.py
 
 # Config
 config.yaml

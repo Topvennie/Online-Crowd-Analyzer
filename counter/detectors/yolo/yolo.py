@@ -13,7 +13,7 @@ CLASSES_INDEX = 0
 
 class Yolo(Detector):
 
-    def __init__(self, confidence, model):
+    def __init__(self, model: str, confidence: float = 0.6, ncnn: bool = False):
         """
         Detector using the YOLO method.
 
@@ -26,10 +26,15 @@ class Yolo(Detector):
         super().__init__()
 
         self._confidence = confidence
-        self._model = YOLO(MODEL_PATH + model, verbose=False)
+
+        if ncnn:
+            YOLO(MODEL_PATH + model, verbose=False).export(format="ncnn")
+            model = model[:-3] + "_ncnn_model"
+
+        self._model = YOLO(MODEL_PATH + model, verbose=False, task="detect")
 
     def detect_faces(self, frame: MatLike) -> NDArray[np.float32]:
-        detections = self._model.predict(frame, classes=[CLASSES_INDEX], conf=self._confidence, verbose=False)
+        detections = self._model.predict(frame, classes=[CLASSES_INDEX], conf=self._confidence, verbose=False, stream=False)
 
         return process_detections(detections[0])
 
