@@ -63,6 +63,7 @@ class DetectorConfig(BaseModel):
 
     model: DetectorModelConfig  # The model to use to detect people
     arguments: dict[str, Any] = {}  # Arguments to pass to the model
+    frame_mod: int  # amount to mod the frame number by to determine if the frame should be processed
 
     @property
     def instance(self) -> Detector:

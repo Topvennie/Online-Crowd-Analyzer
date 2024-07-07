@@ -77,6 +77,7 @@ class Counter:
 
     def _process(self, callback: Callable[[int], None]):
         self._running = True
+        self._frame = 0
         self._fps = FPS().start()
 
         thread = threading.Thread(target=self._track, args=(callback,))
@@ -95,7 +96,12 @@ class Counter:
         thread.join()
 
     def _detect(self, frame: MatLike) -> tuple[MatLike, NDArray[np.float32]]:
-        return frame, self._detector.detect_faces(frame)
+        self._frame += 1
+        
+        if self._frame % 3 == 0:
+            return frame, self._detector.detect_faces(frame)
+        else:
+            return frame, np.array([])
 
     def _track(self, callback: Callable[[int], None]):
         trackable_objects: dict[int, TrackableObject] = {}

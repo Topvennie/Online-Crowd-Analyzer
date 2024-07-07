@@ -96,3 +96,5 @@ for counter in counters:
 # TODO: Add buffer
 # TODO: Try tensor flow lite for pi
 # TODO: Try skipping some frames
+
+# ! 188
