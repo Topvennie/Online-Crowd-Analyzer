@@ -77,7 +77,8 @@ def filter_detections(detections: NDArray[np.float32], confidence: float, class_
             continue
 
         detection[3:] *= np.array([W, H, W, H])
-        filtered[i] = detection[2:]
+        filtered[i, :-1] = detection[2:]
+        filtered[i, -1] = detection_confidence
 
         i += 1
 

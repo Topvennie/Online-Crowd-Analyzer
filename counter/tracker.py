@@ -18,7 +18,7 @@ class Tracker(ABC):
     @abstractmethod
     def update(self,
                rects: NDArray[float32]
-               ) -> dict[int, NDArray[float32]]:
+               ) -> dict[int, tuple[int, int]]:
         """
         Update the tracker with new rectangles.
 

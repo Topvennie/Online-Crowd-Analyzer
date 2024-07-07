@@ -13,6 +13,7 @@ from counter.detectors.mobile.mobile import MobileNetSSD
 from counter.detectors.yolo.yolo import Yolo
 from counter.tracker import Tracker
 from counter.trackers.centroidtracker.centroidtracker import CentroidTracker
+from counter.trackers.sort.sort import Sort
 
 logger = getLogger(__name__)
 
@@ -76,14 +77,12 @@ class TrackerModelConfig(StrEnum):
     """
 
     CENTROID = "centroid"
-    # SORT = "sort"
-    # DEEPSORT = "deepsort"
+    SORT = "sort"
 
     def create_instance(self, arguments: dict[str, Any]) -> Tracker:
         models = {
             TrackerModelConfig.CENTROID: CentroidTracker,
-            # TrackerModelConfig.SORT: SortTracker,
-            # TrackerModelConfig.DEEPSORT: DeepSortTracker,
+            TrackerModelConfig.SORT: Sort,
         }
 
         return models[self](**arguments)

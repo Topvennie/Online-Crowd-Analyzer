@@ -24,7 +24,7 @@ class HOG(Detector):
     def detect_faces(self, frame: MatLike) -> NDArray[np.float32]:
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         boxes, weights = self._hog.detectMultiScale(gray, winStride=(8, 8), padding=(0, 0))
-        boxes = np.array([[weights[index], x, y, x + w, y + h]
+        boxes = np.array([[x, y, x + w, y + h, weights[index]]
                          for (index, (x, y, w, h)) in enumerate(boxes) if weights[index] > self._confidence])
 
         return boxes

@@ -97,11 +97,11 @@ class Counter:
 
     def _detect(self, frame: MatLike) -> tuple[MatLike, NDArray[np.float32]]:
         self._frame += 1
-        
-        if self._frame % 3 == 0:
+
+        if self._frame % self._config.detector.frame_mod == 0:
             return frame, self._detector.detect_faces(frame)
         else:
-            return frame, np.array([])
+            return frame, np.empty((0, 5), dtype=np.float32)
 
     def _track(self, callback: Callable[[int], None]):
         trackable_objects: dict[int, TrackableObject] = {}
@@ -182,8 +182,10 @@ class Counter:
         Tracked objects have a green ID if they have been counted otherwise red.
         """
         # Draw all detections
+        # print(detections)
+        # print(trackable_objects)
         for detection in detections:
-            (startX, startY, endX, endY) = detection[1:].astype(int)
+            (startX, startY, endX, endY) = detection[:-1].astype(int)
             cv2.rectangle(
                 frame,
                 (startX, startY),
@@ -192,7 +194,7 @@ class Counter:
             )
             cv2.putText(
                 frame,
-                f"Confidence: {detection[0]:.2f}",
+                f"Confidence: {detection[-1]:.2f}",
                 (startX, startY - 5),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2
             )

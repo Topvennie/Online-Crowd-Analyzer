@@ -92,9 +92,5 @@ for counter in counters:
     counter.wait_until_finished()
 
 
-# TODO: Try DeepSORT
 # TODO: Add buffer
 # TODO: Try tensor flow lite for pi
-# TODO: Try skipping some frames
-
-# ! 188

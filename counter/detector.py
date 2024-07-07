@@ -27,7 +27,7 @@ class Detector(ABC):
             frame (MatLike): A frame from a video stream.
 
         Returns:
-            NDArray[float32]: An array of bounding boxes consisting of the confidence level and x0, y0, x1, y1 coordinates.
+            NDArray[float32]: An array of bounding boxes consisting of the x0, y0, x1, y1 coordinates and the confidence level.
         """
 
         pass

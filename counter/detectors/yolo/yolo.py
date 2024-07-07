@@ -43,7 +43,7 @@ def process_detections(detections: results.Results) -> NDArray[np.float32]:
 
     detections = detections.cpu()
 
-    processed[:, 1:] = detections.boxes.xyxy  # type: ignore
-    processed[:, 0] = detections.boxes.conf  # type: ignore
+    processed[:, :-1] = detections.boxes.xyxy  # type: ignore
+    processed[:, -1] = detections.boxes.conf  # type: ignore
 
     return processed

@@ -23,7 +23,7 @@ class CentroidTracker(Tracker):
         # ID to its centroid and number of consecutive frames it has
         # been marked as "disappeared", respectively
         self._nextObjectID = 0
-        self._objects: dict[int, NDArray[np.float32]] = OrderedDict()
+        self._objects: dict[int, tuple[int, int]] = OrderedDict()
         self._disappeared: dict[int, int] = OrderedDict()
 
         # store the number of maximum consecutive frames a given
@@ -36,7 +36,7 @@ class CentroidTracker(Tracker):
         # distance we'll start to mark the object as "disappeared"
         self._maxDistance = maxDistance
 
-    def update(self, rects: NDArray[np.float32]) -> dict[int, NDArray[np.float32]]:
+    def update(self, rects: NDArray[np.float32]) -> dict[int, tuple[int, int]]:
         # check to see if the list of input bounding box rectangles
         # is empty
         if len(rects) == 0:
@@ -59,7 +59,7 @@ class CentroidTracker(Tracker):
         inputCentroids = np.zeros((len(rects), 2), dtype="int")
 
         # loop over the bounding box rectangles
-        for (i, (_, startX, startY, endX, endY)) in enumerate(rects):
+        for (i, (startX, startY, endX, endY, _)) in enumerate(rects):
             # use the bounding box coordinates to derive the centroid
             cX = int((startX + endX) / 2.0)
             cY = int((startY + endY) / 2.0)
@@ -121,7 +121,7 @@ class CentroidTracker(Tracker):
                 # set its new centroid, and reset the disappeared
                 # counter
                 objectID = objectIDs[row]
-                self._objects[objectID] = inputCentroids[col]
+                self._objects[objectID] = tuple(inputCentroids[col])
                 self._disappeared[objectID] = 0
 
                 # indicate that we have examined each of the row and
@@ -162,7 +162,7 @@ class CentroidTracker(Tracker):
         # return the set of trackable objects
         return self._objects
 
-    def _register(self, centroid: NDArray):
+    def _register(self, centroid: tuple[int, int]):
         # when registering an object we use the next available object
         # ID to store the centroid
         self._objects[self._nextObjectID] = centroid
