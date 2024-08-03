@@ -93,4 +93,4 @@ for counter in counters:
 
 
 # TODO: Add buffer
-# TODO: Try tensor flow lite for pi
+# TODO: Use batches for coral

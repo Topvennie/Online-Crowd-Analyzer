@@ -28,7 +28,7 @@ class Counter:
         self._fps: FPS
         self._running: bool
 
-        self._detections_queue = queue.Queue()
+        self._detections_queue = queue.Queue(20)
         self._processed_frames = queue.Queue()
 
     def run(self, callback: Callable[[int], None]):

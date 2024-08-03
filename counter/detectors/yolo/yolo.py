@@ -13,19 +13,21 @@ CLASSES_INDEX = 0
 
 class Yolo(Detector):
 
-    def __init__(self, model: str, confidence: float = 0.6, ncnn: bool = False):
+    def __init__(self, model: str = "yolov8n", confidence: float = 0.6, ncnn: bool = False):
         """
         Detector using the YOLO method.
 
         YOLO, You Only Look Once, is a real-time object detection system.
         It applies a single neural network to the full image, making predictions directly from the full image.
 
-        Different models can be used, such as YOLOv3, YOLOv4, YOLOv5, etc.
+        Different models can be used, such as YOLOv5, YOLOv8, etc.
         """
 
         super().__init__()
 
         self._confidence = confidence
+
+        YOLO(MODEL_PATH + model, verbose=False).export(format="edgetpu")
 
         if ncnn:
             YOLO(MODEL_PATH + model, verbose=False).export(format="ncnn")

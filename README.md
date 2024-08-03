@@ -17,7 +17,7 @@ cv2 requires the following packages
 The beste detector and tracker found when writing this readme are
 
 - Detector: yolo
-  - model: yolov8n.pt
+  - model: yolov8s.pt
   - confidence: 0.6
 - Tracker: centroid
   - maxDissappeared: 40
@@ -25,3 +25,9 @@ The beste detector and tracker found when writing this readme are
 
 For Rasberry pie's a NCNN version of yolov8n.pt is recommended.
 You can use one by setting the argument `ncnn: true` in the config file.
+
+
+## Coral
+
+sudo apt-get install libhdf5-serial-dev
+Add yourself to plugdev group `sudo usermod -aG plugdev [your username]`
